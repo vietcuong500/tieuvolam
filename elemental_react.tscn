@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpuvk2xhjpbdt"]
+
+[ext_resource type="Script" path="res://ElementalReact.gd" id="1_sk0cm"]
+
+[node name="ElementalReact" type="TextureRect"]
+offset_right = 10.0
+offset_bottom = 10.0
+scale = Vector2(0.5, 0.5)
+expand_mode = 2
+script = ExtResource("1_sk0cm")

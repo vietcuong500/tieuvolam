@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://i3at4onh6ufu"]
+
+[ext_resource type="Script" path="res://screne/world.gd" id="1_aqjwq"]
+[ext_resource type="Texture2D" uid="uid://bxdq8k3tn7kk" path="res://assets/backgrounds/Background.png" id="1_y12t2"]
+[ext_resource type="PackedScene" uid="uid://cxoikmqb0efx5" path="res://screne/samurai_archer.tscn" id="4_2dkgn"]
+[ext_resource type="PackedScene" uid="uid://bwjm81j5h1jtg" path="res://health_manager.tscn" id="4_qlp5a"]
+[ext_resource type="Resource" uid="uid://r82wpxsolqse" path="res://resources/ino_character.tres" id="5_o7ig3"]
+[ext_resource type="Resource" uid="uid://dsv28smgcr7u8" path="res://resources/mage_character.tres" id="6_5kmmm"]
+[ext_resource type="Script" path="res://screne/SkillManager.gd" id="6_p2saf"]
+[ext_resource type="PackedScene" uid="uid://0gu7fe5ric1e" path="res://resources/damage_system.tscn" id="7_ebv0v"]
+[ext_resource type="PackedScene" uid="uid://dpynhntt6sydk" path="res://action_bar.tscn" id="7_ilw5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g4wk"]
+size = Vector2(957, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjryb"]
+size = Vector2(47, 366)
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_aqjwq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_y12t2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-7.5, 372)
+shape = SubResource("RectangleShape2D_5g4wk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(11, 259)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(403, 168)
+shape = SubResource("RectangleShape2D_sjryb")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-399, 175)
+shape = SubResource("RectangleShape2D_sjryb")
+
+[node name="HealthManager" parent="." instance=ExtResource("4_qlp5a")]
+
+[node name="Player1" parent="." instance=ExtResource("4_2dkgn")]
+position = Vector2(221, 274)
+speed = 100
+knockback = 500
+attack_speed = 0.8
+character_stats = ExtResource("5_o7ig3")
+skills = Array[String](["WallFire"])
+range_type = "melee"
+team = "red"
+range = 100
+health = 200
+
+[node name="SamuraiArcher2" parent="." instance=ExtResource("4_2dkgn")]
+position = Vector2(-249, 274)
+speed = 100
+knockback = 300
+attack_speed = 0.6
+character_stats = ExtResource("6_5kmmm")
+skills = Array[String](["WallFire"])
+range_type = "melee"
+health = 200
+
+[node name="SkillManager" type="Node" parent="."]
+script = ExtResource("6_p2saf")
+
+[node name="ActionBar" parent="SkillManager" instance=ExtResource("7_ilw5i")]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -660.0
+offset_top = 41.0
+offset_right = -660.0
+offset_bottom = 41.0
+grow_vertical = 0
+
+[node name="DamageSystem" parent="." instance=ExtResource("7_ebv0v")]
+
+[connection signal="skills_list" from="SkillManager/ActionBar" to="SkillManager" method="_on_action_bar_skills_list"]

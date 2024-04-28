@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ntywfeljd1yw"]
+
+[ext_resource type="Script" path="res://ElementRectContainer.gd" id="1_allan"]
+[ext_resource type="Script" path="res://element_rect_container.gd" id="1_mrjm4"]
+[ext_resource type="PackedScene" uid="uid://cpuvk2xhjpbdt" path="res://elemental_react.tscn" id="2_gi46b"]
+
+[node name="Panel" type="Panel"]
+offset_right = 240.0
+offset_bottom = 74.0
+script = ExtResource("1_mrjm4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ElementRectContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_allan")
+element_rect = ExtResource("2_gi46b")
+
+[connection signal="timeout" from="Timer" to="ElementRectContainer" method="_on_timer_timeout"]
+[connection signal="child_order_changed" from="ElementRectContainer" to="ElementRectContainer" method="_on_child_order_changed"]

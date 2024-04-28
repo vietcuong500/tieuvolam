@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=3 format=3 uid="uid://dsv28smgcr7u8"]
+
+[ext_resource type="Resource" uid="uid://xwj4bs5cgfnt" path="res://core/Element/MetalElement.tres" id="1_1n3ur"]
+[ext_resource type="Script" path="res://resources/character_stats.gd" id="2_p5ebg"]
+
+[resource]
+script = ExtResource("2_p5ebg")
+hp = 300
+atk = 120
+def = 20
+speed = 100
+knockback = 500
+avoid = 23.0
+accurate = 70.0
+health_regen = 10
+element = ExtResource("1_1n3ur")

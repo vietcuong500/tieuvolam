@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn6usq4ug8whe"]
+
+[ext_resource type="Script" path="res://Damageabled.gd" id="1_qs2dl"]
+
+[node name="Damageabled" type="Node"]
+script = ExtResource("1_qs2dl")

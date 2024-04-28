@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://blk2pmjvgixpm"]
+
+[ext_resource type="Script" path="res://core/element.gd" id="2_h4ja2"]
+[ext_resource type="Resource" uid="uid://xwj4bs5cgfnt" path="res://core/Element/MetalElement.tres" id="3_okcw7"]
+
+[node name="ElementButton" type="TextureRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(0.3, 0.3)
+script = ExtResource("2_h4ja2")
+element = ExtResource("3_okcw7")

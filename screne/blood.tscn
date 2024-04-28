@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6g7d5t7pm4m0"]
+
+[ext_resource type="Texture2D" uid="uid://ca47aj2tfv4mn" path="res://assets/characters/Countess_Vampire/Blood_Charge_4.png" id="1_t2iib"]
+[ext_resource type="Script" path="res://screne/blood.gd" id="1_u3eea"]
+[ext_resource type="Script" path="res://screne/Hitbox2.gd" id="3_rt8e2"]
+[ext_resource type="Script" path="res://screne/Impact.gd" id="4_ix2c3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0ohe"]
+atlas = ExtResource("1_t2iib")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjrf5"]
+atlas = ExtResource("1_t2iib")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgkay"]
+atlas = ExtResource("1_t2iib")
+region = Rect2(128, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs0x4"]
+atlas = ExtResource("1_t2iib")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35x8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0ohe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjrf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgkay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs0x4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8bb8c"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghfe2"]
+radius = 3.0
+
+[node name="Blood" type="Node2D"]
+script = ExtResource("1_u3eea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_35x8w")
+autoplay = "default"
+frame_progress = 0.208193
+
+[node name="Hitbox2" type="Area2D" parent="."]
+script = ExtResource("3_rt8e2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2"]
+shape = SubResource("CircleShape2D_8bb8c")
+
+[node name="Impact" type="Area2D" parent="."]
+script = ExtResource("4_ix2c3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Impact"]
+shape = SubResource("CircleShape2D_ghfe2")
+debug_color = Color(0.835294, 0.227451, 0.776471, 0.419608)
+
+[connection signal="area_entered" from="Impact" to="Impact" method="_on_area_entered"]

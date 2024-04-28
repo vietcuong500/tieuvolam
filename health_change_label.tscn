@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5xbf4ddpxiv4"]
+
+[ext_resource type="FontFile" uid="uid://bw7tbtrighc7h" path="res://assets/fonts/Fz Thư pháp Tiểu tự Fontzin.ttf" id="1_45sfv"]
+[ext_resource type="Script" path="res://HealthChangeLabel.gd" id="1_qrn6n"]
+
+[node name="HealthChangeLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_45sfv")
+theme_override_font_sizes/font_size = 24
+text = "1000"
+script = ExtResource("1_qrn6n")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

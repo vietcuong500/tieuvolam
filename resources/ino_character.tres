@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=3 format=3 uid="uid://r82wpxsolqse"]
+
+[ext_resource type="Resource" uid="uid://bnm3f56iw43dg" path="res://core/Element/WoodElement.tres" id="1_4divm"]
+[ext_resource type="Script" path="res://resources/character_stats.gd" id="2_tbj1n"]
+
+[resource]
+script = ExtResource("2_tbj1n")
+hp = 200
+atk = 110
+def = 40
+speed = 120
+knockback = 500
+avoid = 40.0
+accurate = 70.0
+health_regen = 10
+element = ExtResource("1_4divm")

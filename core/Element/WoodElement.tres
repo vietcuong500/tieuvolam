@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Element" load_steps=3 format=3 uid="uid://bnm3f56iw43dg"]
+
+[ext_resource type="Texture2D" uid="uid://dhdo3d6calboy" path="res://assets/effect/Icons/Icon2.png" id="1_ja0xp"]
+[ext_resource type="Script" path="res://elements.gd" id="2_t5uhf"]
+
+[resource]
+script = ExtResource("2_t5uhf")
+icon = ExtResource("1_ja0xp")
+element = "Wood"

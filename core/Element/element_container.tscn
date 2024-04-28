@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dogfhir7gt5i5"]
+
+[ext_resource type="PackedScene" uid="uid://blk2pmjvgixpm" path="res://core/element.tscn" id="1_kdljg"]
+[ext_resource type="Resource" uid="uid://bnm3f56iw43dg" path="res://core/Element/WoodElement.tres" id="2_p14m8"]
+
+[node name="ElementContainer" type="HBoxContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ElementButton" parent="." instance=ExtResource("1_kdljg")]
+layout_mode = 2
+
+[node name="ElementButton2" parent="." instance=ExtResource("1_kdljg")]
+layout_mode = 2
+element = ExtResource("2_p14m8")

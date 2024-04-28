@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://blutj6ekmhofq"]
+
+[ext_resource type="Script" path="res://screne/Pivot.gd" id="1_56tnv"]
+[ext_resource type="Script" path="res://script/Hitbox.gd" id="1_i2exr"]
+[ext_resource type="Script" path="res://script/Hurtbox.gd" id="2_vgx6x"]
+[ext_resource type="Script" path="res://CollisionHitbox.gd" id="3_33c6b"]
+[ext_resource type="Script" path="res://script/DetectPlayer.gd" id="3_pmjb2"]
+[ext_resource type="Script" path="res://CollisionShapeDetect.gd" id="5_f8ef1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvb7l"]
+size = Vector2(80, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0yhb"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urlqy"]
+size = Vector2(100, 30)
+
+[node name="Pivot" type="Marker2D"]
+script = ExtResource("1_56tnv")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+script = ExtResource("1_i2exr")
+
+[node name="CollisionHitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(30, 33)
+shape = SubResource("RectangleShape2D_gvb7l")
+script = ExtResource("3_33c6b")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_vgx6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-4, 32)
+shape = SubResource("RectangleShape2D_g0yhb")
+debug_color = Color(0.819608, 0.34902, 0.533333, 0.419608)
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+disable_mode = 2
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+script = ExtResource("3_pmjb2")
+
+[node name="CollisionShapeDetect" type="CollisionShape2D" parent="DetectPlayer"]
+position = Vector2(40, 33)
+shape = SubResource("RectangleShape2D_urlqy")
+debug_color = Color(0.85098, 0.368627, 0.137255, 0.419608)
+script = ExtResource("5_f8ef1")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered"]
+[connection signal="area_shape_entered" from="Hitbox" to="Hitbox" method="_on_area_shape_entered"]
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="Hurtbox" method="_on_area_exited"]
+[connection signal="hitbox_detect" from="Hurtbox" to="." method="_on_hurtbox_hitbox_detect"]
+[connection signal="area_entered" from="DetectPlayer" to="." method="_on_detect_player_area_entered"]
+[connection signal="area_entered" from="DetectPlayer" to="DetectPlayer" method="_on_area_entered"]
+[connection signal="area_exited" from="DetectPlayer" to="." method="_on_detect_player_area_exited"]

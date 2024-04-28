@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://0gu7fe5ric1e"]
+
+[ext_resource type="Script" path="res://DamageSystem.gd" id="1_jomqh"]
+[ext_resource type="Script" path="res://resources/ElementalCounter.gd" id="2_117g5"]
+
+[node name="DamageSystem" type="Node"]
+script = ExtResource("1_jomqh")
+
+[node name="ElementalReactions" type="Node" parent="."]
+
+[node name="ElementalResonance" type="Node" parent="."]
+
+[node name="ElementalCounter" type="Node" parent="."]
+script = ExtResource("2_117g5")

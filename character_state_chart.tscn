@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ce4k0dys5ue"]
+
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_ynrw2"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_o2o0p"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/animation_player_state.gd" id="3_ski4k"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="4_cfv8b"]
+
+[node name="CharacterStateChart" type="Node"]
+script = ExtResource("1_ynrw2")
+
+[node name="AnimationControl" type="Node" parent="."]
+script = ExtResource("2_o2o0p")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="AnimationControl"]
+script = ExtResource("3_ski4k")
+animation_player = NodePath("../../../AnimationPlayer")
+animation_name = &"ide"
+
+[node name="to run" type="Node" parent="AnimationControl/idle"]
+script = ExtResource("4_cfv8b")
+to = NodePath("../../run")
+event = &"set_run"
+
+[node name="attack" type="Node" parent="AnimationControl"]
+script = ExtResource("3_ski4k")
+animation_player = NodePath("../../../AnimationPlayer")
+animation_name = &"attack"
+
+[node name="to run" type="Node" parent="AnimationControl/attack"]
+script = ExtResource("4_cfv8b")
+to = NodePath("../../run")
+event = &"to_run"
+
+[node name="to hurt" type="Node" parent="AnimationControl/attack"]
+script = ExtResource("4_cfv8b")
+to = NodePath("../../hurt")
+event = &"to_hurt"
+
+[node name="run" type="Node" parent="AnimationControl"]
+script = ExtResource("3_ski4k")
+animation_player = NodePath("../../../AnimationPlayer")
+animation_name = &"run"
+
+[node name="to attack" type="Node" parent="AnimationControl/run"]
+script = ExtResource("4_cfv8b")
+to = NodePath("../../attack")
+event = &"to_attack"
+
+[node name="to hurt" type="Node" parent="AnimationControl/run"]
+script = ExtResource("4_cfv8b")
+to = NodePath("../../hurt")
+event = &"to_hurt"
+
+[node name="hurt" type="Node" parent="AnimationControl"]
+script = ExtResource("3_ski4k")
+animation_player = NodePath("../../../AnimationPlayer")
+animation_name = &"hurt"
+
+[node name="to run" type="Node" parent="AnimationControl/hurt"]
+script = ExtResource("4_cfv8b")
+to = NodePath("../../run")
+event = &"to_run"
+
+[node name="to dead" type="Node" parent="AnimationControl/hurt"]
+script = ExtResource("4_cfv8b")
+to = NodePath("../../dead")
+event = &"to_dead"
+
+[node name="dead" type="Node" parent="AnimationControl"]
+script = ExtResource("3_ski4k")
+animation_player = NodePath("../../../AnimationPlayer")
+animation_name = &"dead"
